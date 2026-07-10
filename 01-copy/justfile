@@ -1,0 +1,22 @@
+default: run
+
+configure:
+    test -f build/CMakeCache.txt || cmake -S . -B build
+
+build: configure
+    cmake --build build
+
+run: build
+    ./build/01-copy
+
+profile-nsys: build
+    nsys profile --trace=cuda,nvtx,osrt -o nsys_01-copy --force-overwrite true ./build/01-copy
+
+profile-ncu-memory: build
+    ncu --section MemoryWorkloadAnalysis -o report_ncu_memory --force-overwrite ./build/01-copy
+
+profile-ncu-full: build
+    ncu --set full -o report_ncu_full --force-overwrite ./build/01-copy
+
+fmt:
+    clang-format -i src/main.cu
