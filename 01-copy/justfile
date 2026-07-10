@@ -1,7 +1,7 @@
 default: run
 
 configure:
-    test -f build/CMakeCache.txt || cmake -S . -B build
+    cmake -S . -B build
 
 build: configure
     cmake --build build

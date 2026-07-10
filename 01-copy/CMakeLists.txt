@@ -29,6 +29,11 @@ if(CUDA_TEMPLATE_ENABLE_WARNINGS)
     )
 endif()
 
+target_link_libraries(${CUDA_TEMPLATE_BINARY_NAME}
+    PRIVATE
+        stdc++
+)
+
 set_target_properties(${CUDA_TEMPLATE_BINARY_NAME}
     PROPERTIES
         CUDA_SEPARABLE_COMPILATION ON

@@ -8,7 +8,7 @@ A minimal CUDA hello-world project.
 just build
 ```
 
-`just build` only configures on the first run, or when `build/CMakeCache.txt` is missing.
+`just build` always regenerates the CMake build system before compiling, which avoids stale cache/layout issues on fresh clones or copied build directories.
 
 ## Run
 
